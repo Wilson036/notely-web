@@ -5,9 +5,7 @@ import Navigation from '../components/Navigation';
 const Home = () => {
   return (
     <div>
-      <Header />
-      <Navigation />
-      <h1>Notedly</h1>
+      <p>this is home page</p>
     </div>
   );
 };
