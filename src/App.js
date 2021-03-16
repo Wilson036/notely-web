@@ -5,12 +5,16 @@ import GlobalStyle from './components/GlobalStyle';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 
 const App = () => {
-  const uri = process.env.API_URI;
+  const uri = process.env.REACT_APP_API_URI;
+
+  console.log(uri);
+  //啟動快取
   const cache = new InMemoryCache();
 
   const client = new ApolloClient({
     uri,
     cache,
+    //啟用開發者工具
     connectToDevTools: true
   });
 
