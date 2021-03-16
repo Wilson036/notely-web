@@ -2,13 +2,23 @@ import Pages from './pages';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import GlobalStyle from './components/GlobalStyle';
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 
 const App = () => {
+  const uri = process.env.API_URI;
+  const cache = new InMemoryCache();
+
+  const client = new ApolloClient({
+    uri,
+    cache,
+    connectToDevTools: true
+  });
+
   return (
-    <div>
+    <ApolloProvider client={client}>
       <GlobalStyle />
       <Pages />
-    </div>
+    </ApolloProvider>
   );
 };
 
