@@ -6,8 +6,6 @@ import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 
 const App = () => {
   const uri = process.env.REACT_APP_API_URI;
-
-  console.log(uri);
   //啟動快取
   const cache = new InMemoryCache();
 
