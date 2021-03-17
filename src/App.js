@@ -37,6 +37,8 @@ const App = () => {
     isLoggedIn: !!localStorage.getItem('token')
   };
   cache.writeData({ data });
+  //重設快取後寫入快取資料
+  client.onResetStore(() => cache.writeData({ data }));
   return (
     <ApolloProvider client={client}>
       <GlobalStyle />
