@@ -51,7 +51,7 @@ const Header = props => {
           <ButtonAsLink onClick={logOut}>Log Out</ButtonAsLink>
         ) : (
           <p>
-            <Link to={'/singin'}>Sign In</Link> or{' '}
+            <Link to={'/signIn'}>Sign In</Link> or{' '}
             <Link to={'/signUp'}>Sign Up</Link>
           </p>
         )}

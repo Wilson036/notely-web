@@ -6,12 +6,14 @@ import Home from './home';
 import MyNotes from './mynotes';
 import NotePage from './note';
 import SignUp from './signUp';
+import Signin from './Signin';
 
 const Pages = () => {
   return (
     <Router>
       <Layout>
         <Route path="/signUp" component={SignUp} />
+        <Route path="/signIn" component={Signin} />
         <Route exact path="/" component={Home}></Route>
         <Route path="/mynotes" component={MyNotes}></Route>
         <Route path="/favorites" component={Favorites}></Route>
