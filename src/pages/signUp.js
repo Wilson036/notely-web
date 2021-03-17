@@ -1,6 +1,7 @@
 import Button from '../components/Button';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import { gql, useMutation } from '@apollo/client';
 
 const SubmitButton = styled(Button)`
   width: 100%;
@@ -43,13 +44,28 @@ const SignUp = props => {
     });
   };
 
+  const SIGNIN_USER = gql`
+    mutation signUp($email: String!, $username: String!, $password: String!) {
+      singUp(username: $username, email: $email, password: $password)
+    }
+  `;
+
+  const [signUp, { loading, error }] = useMutation(SIGNIN_USER, {
+    onCompleted: data => {
+      localStorage.setItem('token', data.singUp);
+      props.history.push('/');
+    }
+  });
+
   return (
     <Wrapper>
       <h2>Sign Up</h2>
       <Form
         onSubmit={e => {
           e.preventDefault();
-          console.log(values);
+          signUp({
+            variables: { ...values }
+          });
         }}
       >
         <label htmlFor="username">Username:</label>
