@@ -1,7 +1,7 @@
 import Button from '../components/Button';
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { gql, useMutation } from '@apollo/client';
+import { gql, useMutation, useApolloClient } from '@apollo/client';
 
 const SubmitButton = styled(Button)`
   width: 100%;
@@ -50,9 +50,12 @@ const SignUp = props => {
     }
   `;
 
+  const client = useApolloClient();
+
   const [signUp, { loading, error }] = useMutation(SIGNIN_USER, {
     onCompleted: data => {
       localStorage.setItem('token', data.singUp);
+      client.writeData({ data: { isLoggedIn: true } });
       props.history.push('/');
     }
   });

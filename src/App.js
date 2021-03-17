@@ -33,6 +33,10 @@ const App = () => {
     connectToDevTools: true
   });
 
+  const data = {
+    isLoggedIn: !!localStorage.getItem('token')
+  };
+  cache.writeData({ data });
   return (
     <ApolloProvider client={client}>
       <GlobalStyle />
