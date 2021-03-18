@@ -7,13 +7,9 @@ import MyNotes from './mynotes';
 import NotePage from './note';
 import SignUp from './signUp';
 import Signin from './Signin';
-import { gql, useQuery } from '@apollo/client';
-
-const IS_LOGGED_IN = gql`
-  {
-    isLoggedIn @client
-  }
-`;
+import { useQuery } from '@apollo/client';
+import { IS_LOGGED_IN } from '../gql/query';
+import NewNote from './new';
 
 const Pages = () => {
   return (
@@ -21,10 +17,11 @@ const Pages = () => {
       <Layout>
         <Route path="/signUp" component={SignUp} />
         <Route path="/signIn" component={Signin} />
-        <Route exact path="/" component={Home}></Route>
+        <Route exact path="/" component={Home} />
+        <PrivateRoute path="/new" component={NewNote} />
         <PrivateRoute path="/mynotes" component={MyNotes} />
         <PrivateRoute path="/favorites" component={Favorites} />
-        <Route path="/note/:id" component={NotePage}></Route>
+        <Route path="/note/:id" component={NotePage} />
       </Layout>
     </Router>
   );

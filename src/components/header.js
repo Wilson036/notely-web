@@ -1,4 +1,5 @@
-import { gql, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
+import { IS_LOGGED_IN } from '../gql/query';
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
@@ -21,12 +22,6 @@ const LogoText = styled.h1`
   margin: 0;
   padding: 0;
   display: inline;
-`;
-
-const IS_LOGGED_IN = gql`
-  {
-    isLoggedIn @client
-  }
 `;
 
 const UserState = styled.div`

@@ -1,23 +1,16 @@
-import Button from '../components/Button';
 import React, { useEffect, useState } from 'react';
-import styled from 'styled-components';
-import { gql, useMutation, useApolloClient } from '@apollo/client';
+import { useMutation, useApolloClient } from '@apollo/client';
 import UserForm from '../components/UserForm';
+import { SIGNUP_USER } from '../gql/mutation';
 
 const SignUp = props => {
   useEffect(() => {
     document.title = 'SignUp - Notedly';
   });
 
-  const SIGNIN_USER = gql`
-    mutation signUp($email: String!, $username: String!, $password: String!) {
-      singUp(username: $username, email: $email, password: $password)
-    }
-  `;
-
   const client = useApolloClient();
 
-  const [signUp, { loading, error }] = useMutation(SIGNIN_USER, {
+  const [signUp, { loading, error }] = useMutation(SIGNUP_USER, {
     onCompleted: data => {
       localStorage.setItem('token', data.singUp);
       client.writeData({ data: { isLoggedIn: true } });
