@@ -8,7 +8,7 @@ const SingIn = props => {
 
   const [signIn, { loading, error }] = useMutation(SIGNIN_USER, {
     onCompleted: data => {
-      localStorage.setItem('token', data.singIn);
+      localStorage.setItem('token', data.signIn);
       client.writeData({ data: { isLoggedIn: true } });
       props.history.push('/');
     }
