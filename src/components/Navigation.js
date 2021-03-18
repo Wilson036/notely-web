@@ -1,3 +1,4 @@
+import { gql, useQuery } from '@apollo/client';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -39,8 +40,14 @@ const NavList = styled.ul`
     color: #0077cc;
   }
 `;
+const IS_LOGGED_IN = gql`
+  {
+    isLoggedIn @client
+  }
+`;
 
 const Navigation = () => {
+  const { data } = useQuery(IS_LOGGED_IN);
   return (
     <StyledNav>
       <NavList>
@@ -50,18 +57,22 @@ const Navigation = () => {
           </span>
           <Link to="/">Home</Link>
         </li>
-        <li>
-          <span aria-hidden="true" role="img">
-            📓
-          </span>
-          <Link to="/mynotes">My notes</Link>
-        </li>
-        <li>
-          <span aria-hidden="true" role="img">
-            🌟
-          </span>
-          <Link to="/favorites">Favorites</Link>
-        </li>
+        {data.isLoggedIn && (
+          <React.Fragment>
+            <li>
+              <span aria-hidden="true" role="img">
+                📓
+              </span>
+              <Link to="/mynotes">My notes</Link>
+            </li>
+            <li>
+              <span aria-hidden="true" role="img">
+                🌟
+              </span>
+              <Link to="/favorites">Favorites</Link>
+            </li>
+          </React.Fragment>
+        )}
       </NavList>
     </StyledNav>
   );

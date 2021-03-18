@@ -32,7 +32,6 @@ const Pages = () => {
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const { loading, error, data } = useQuery(IS_LOGGED_IN);
-  console.log('rest', rest);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error!</p>;
 
