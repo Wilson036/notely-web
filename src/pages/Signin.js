@@ -3,15 +3,15 @@ import UserForm from '../components/UserForm';
 import React, { useEffect } from 'react';
 
 const SIGNIN_USER = gql`
-  mutation signIn($email: String!, $username: String!, $password: String!) {
-    singUp(username: $username, email: $email, password: $password)
+  mutation singIn($email: String!, $password: String!) {
+    singIn(password: $password, email: $email)
   }
 `;
 
 const SingIn = props => {
   const client = useApolloClient();
 
-  const [signIn, { loading, error }] = useMutation(SIGNIN_USER, {
+  const [singIn, { loading, error }] = useMutation(SIGNIN_USER, {
     onCompleted: data => {
       localStorage.setItem('token', data.singIn);
       client.writeData({ data: { isLoggedIn: true } });
@@ -25,7 +25,7 @@ const SingIn = props => {
 
   return (
     <React.Fragment>
-      <UserForm action={signIn} formType="signin" />
+      <UserForm action={singIn} formType="signin" />
     </React.Fragment>
   );
 };
