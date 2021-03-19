@@ -2,6 +2,7 @@ import { GET_ME } from '../gql/query';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
+import DeleteNote from './DeleteNote';
 
 const NoteUser = props => {
   const { loading, error, data } = useQuery(GET_ME);
@@ -13,7 +14,11 @@ const NoteUser = props => {
     <React.Fragment>
       Favorites: {props.note.favorites} <br />
       {data.me.id === props.note.author.id && (
-        <Link to={`/edit/${props.note.id}`}>Edit</Link>
+        <React.Fragment>
+          <Link to={`/edit/${props.note.id}`}>Edit</Link>
+          <br />
+          <DeleteNote noteId={props.note.id} />
+        </React.Fragment>
       )}
     </React.Fragment>
   );
