@@ -36,10 +36,49 @@ const GET_NOTE = gql`
   }
 `;
 
+const GET_MY_NOTES = gql`
+  query me {
+    me {
+      id
+      username
+      notes {
+        createdAt
+        content
+        favoriteCount
+        author {
+          username
+          id
+          avatar
+        }
+      }
+    }
+  }
+`;
+
+const GET_MY_FAVOTES = gql`
+  query me {
+    me {
+      id
+      username
+      favorites {
+        id
+        createdAt
+        content
+        favoriteCount
+        author {
+          username
+          id
+          avatar
+        }
+      }
+    }
+  }
+`;
+
 const IS_LOGGED_IN = gql`
   {
     isLoggedIn @client
   }
 `;
 
-export { GET_NOTES, GET_NOTE, IS_LOGGED_IN };
+export { GET_NOTES, GET_NOTE, IS_LOGGED_IN, GET_MY_NOTES, GET_MY_FAVOTES };
