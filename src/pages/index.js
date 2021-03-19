@@ -10,6 +10,7 @@ import Signin from './Signin';
 import { useQuery } from '@apollo/client';
 import { IS_LOGGED_IN } from '../gql/query';
 import NewNote from './new';
+import EditNote from './edit';
 
 const Pages = () => {
   return (
@@ -21,6 +22,7 @@ const Pages = () => {
         <PrivateRoute path="/new" component={NewNote} />
         <PrivateRoute path="/mynotes" component={MyNotes} />
         <PrivateRoute path="/favorites" component={Favorites} />
+        <PrivateRoute path="/edit/:id" component={EditNote} />
         <Route path="/note/:id" component={NotePage} />
       </Layout>
     </Router>
