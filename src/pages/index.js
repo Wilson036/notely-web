@@ -19,11 +19,11 @@ const Pages = () => {
         <Route path="/signUp" component={SignUp} />
         <Route path="/signIn" component={Signin} />
         <Route exact path="/" component={Home} />
+        <Route path="/note/:id" component={NotePage} />
         <PrivateRoute path="/new" component={NewNote} />
         <PrivateRoute path="/mynotes" component={MyNotes} />
         <PrivateRoute path="/favorites" component={Favorites} />
         <PrivateRoute path="/edit/:id" component={EditNote} />
-        <Route path="/note/:id" component={NotePage} />
       </Layout>
     </Router>
   );

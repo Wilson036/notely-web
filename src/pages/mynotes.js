@@ -1,7 +1,7 @@
 import { useQuery } from '@apollo/client';
 import { GET_MY_NOTES } from '../gql/query';
 import React, { useEffect } from 'react';
-import NoteFeed from '../../solutions/03-GraphQL-Query/components/NoteFeed';
+import NoteFeed from '../components/NoteFeed';
 
 const MyNotes = () => {
   useEffect(() => {
